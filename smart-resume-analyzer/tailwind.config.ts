@@ -1,3 +1,4 @@
+// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 export default {
@@ -6,7 +7,7 @@ export default {
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx,js}", // Ensure .js files are included for content scanning
 	],
 	prefix: "",
 	theme: {
@@ -66,8 +67,17 @@ export default {
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				xl: '1rem', // Added for more rounded elements
+				'2xl': '1.5rem' // Added for even more rounded elements
 			},
+			// --- FONT ADDITION ---
+			fontFamily: {
+                sans: ['Inter Variable', ...require('tailwindcss/defaultTheme').fontFamily.sans],
+                // Add a serif or monospace font if you want more variety
+                // serif: ['Merriweather', ...require('tailwindcss/defaultTheme').fontFamily.serif],
+            },
+			// --- END FONT ADDITION ---
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -84,11 +94,18 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				// --- Custom keyframe for caret blink if not already defined for input-otp ---
+                'caret-blink': {
+                    '0%,70%,100%': { 'background-color': 'hsl(var(--foreground))' },
+                    '20%': { 'background-color': 'transparent' },
+                },
+                // --- End Custom keyframe ---
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'caret-blink': 'caret-blink 1.2s ease-out infinite', // Apply caret blink animation
 			}
 		}
 	},

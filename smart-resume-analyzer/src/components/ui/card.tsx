@@ -1,3 +1,4 @@
+// src/components/ui/card.tsx
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -8,8 +9,10 @@ const Card = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
+    // Changed rounded-lg to rounded-xl (from tailwind.config.ts) and shadow-sm to shadow-md or shadow-lg
+    // Optional: You could remove 'border' if you want a purely shadow-based elevation
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "rounded-xl border bg-card text-card-foreground shadow-lg", // Changed rounded-lg to rounded-xl, shadow-sm to shadow-lg
       className
     )}
     {...props}
